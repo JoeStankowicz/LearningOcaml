@@ -1,1 +1,1 @@
-ocamlc -o SemVer -a SemVer.ml
+ocamlc -o SemVer.cma -a SemVer.ml
