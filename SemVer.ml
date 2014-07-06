@@ -16,3 +16,11 @@ match semversplit with
 
 let print sv =
 Printf.printf "%d.%d.%d" sv.major sv.minor sv.patch
+
+let greater_than left right =
+if left.major == right.major then
+	if left.minor == right.minor then
+		left.patch > right.patch
+	else left.minor > right.minor
+else left.major > right.major
+	
