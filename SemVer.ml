@@ -1,5 +1,7 @@
+(*shouldn't have to open Printf. open is mostly useful for operators*)
 open Printf
 
+(*patch needs to be a string*)
 type semver = { major : int; minor : int; patch : int; }
 
 let make_semver major minor patch =
@@ -13,11 +15,14 @@ match semversplit with
 | [ major ; minor ] -> make_semver major minor "0"
 | [ major ] -> make_semver major "0" "0"
 | [] -> make_semver "0" "0" "0"
+(*return an 'option type' it's a more functional way to handle errors*)
+| _ -> make_semver "0" "0" "0"
 
 let print sv =
 Printf.printf "%d.%d.%d" sv.major sv.minor sv.patch
 
-let greater_than left right =
+(*use SemVer site's list of tests*)
+let (>) left right =
 if left.major == right.major then
 	if left.minor == right.minor then
 		left.patch > right.patch
